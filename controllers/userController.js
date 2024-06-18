@@ -56,8 +56,8 @@ const filterObj = (obj, ...allowedFields) => {
 };
 
 exports.updateMe = catchAsync(async (req, res, next) => {
-  console.log(req.file);
-  console.log(req.body);
+  // console.log(req.file);
+  // console.log(req.body);
   // 1. create an error if user posts paddword data
   if (req.body.password || req.body.passwordConfirm) {
     return next(

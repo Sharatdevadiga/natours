@@ -14,10 +14,7 @@ if (window.Stripe) {
 export const bookTour = async tourid => {
   try {
     // 1. get the session from the endpoint
-    const session = await axios(
-      `http://localhost:3000/api/v1/bookings/checkout-session/${tourid}`
-    );
-    console.log(session);
+    const session = await axios(`/api/v1/bookings/checkout-session/${tourid}`);
 
     // 2. create checkout form and charge the credit card
     await stripe.redirectToCheckout({

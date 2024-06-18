@@ -9,3 +9,5 @@ dev-data/
 
 # Ignore config.env file
 config.env
+
+.cache/

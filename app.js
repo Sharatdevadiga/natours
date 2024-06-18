@@ -6,6 +6,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 // const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
@@ -96,6 +97,8 @@ app.use(
     ]
   })
 );
+
+app.use(compression());
 
 // testing middleware
 app.use((req, res, next) => {
