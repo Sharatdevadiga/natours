@@ -25,7 +25,7 @@ export const signup = async (name, email, password, passwordConfirm) => {
       showAlert('success', 'Created your account successfully');
       window.setTimeout(() => {
         location.assign('/');
-      }, 1500);
+      }, 200);
     }
   } catch (err) {
     showAlert('error', err.response.data.message);

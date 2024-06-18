@@ -16,6 +16,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingController');
 const viewRouter = require('./routes/viewRoutes');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -24,13 +25,15 @@ const app = express();
 
 app.enable('trust proxy');
 
-app.use(cors());
-
 // creating pug template engine
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 //1. GLOBAL MIDDLEWARES
+// implement CORS
+app.use(cors());
+app.options('*', cors());
+
 // serving static file
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -73,6 +76,12 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again in an hour!'
 });
 app.use('/api', limiter);
+
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 
 // body parser, reading data from the body into req.body
 app.use(express.json({ limit: '10kb' }));
