@@ -22,6 +22,8 @@ const globalErrorHandler = require('./controllers/errorController');
 
 const app = express();
 
+app.enable('trust proxy');
+
 app.use(cors());
 
 // creating pug template engine
