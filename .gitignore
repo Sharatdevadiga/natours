@@ -2,7 +2,7 @@
 node_modules/
 
 # Ignore .env file
-.env
+*.env
 
 # Ignore development data folder
 dev-data/

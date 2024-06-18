@@ -141,7 +141,6 @@ tourSchema.virtual('reviews', {
 // DOCUMENT MIDDLEWARE runs before .save() and .create()
 // we can have multiple pre or post middlewares for the same hook
 tourSchema.pre('save', function(next) {
-  console.log(this); //this -> current document
   this.slug = slugify(this.name, { lower: true });
   next();
 });
@@ -179,7 +178,7 @@ tourSchema.pre(/^find/, function(next) {
 
 tourSchema.post(/^find/, function(docs, next) {
   console.log(`Querry took ${Date.now() - this.start} milliseconds`);
-  console.log(docs);
+  // console.log(docs);
   next();
 });
 
