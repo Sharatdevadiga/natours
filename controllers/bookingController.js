@@ -87,8 +87,6 @@ exports.webhookCheckout = async (req, res, next) => {
     res.status(200).json({
       received: true
     });
-
-    // return res.redirect('/my-tours');
   }
 };
 
